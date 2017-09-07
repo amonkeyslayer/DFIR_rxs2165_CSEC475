@@ -1,4 +1,8 @@
-﻿$csvData = New-Object -TypeName psobject
+﻿#Robert Suter
+ #CSEC475
+ #Powershell Script that gathers information on target computer
+ 
+ $csvData = New-Object -TypeName psobject
 
 #Time
 $date = Get-Date
