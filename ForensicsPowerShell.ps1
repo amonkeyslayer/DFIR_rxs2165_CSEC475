@@ -71,3 +71,38 @@ $partitions = Get-PSDrive -PSProvider 'FileSystem'
 #2: see conected usb devices
 $conectedusb = gwmi Win32_USBControllerDevice |%{[wmi]($_.Dependent)} | Sort Manufacturer,Description,DeviceID | Ft -GroupBy Manufacturer Description,Service,DeviceID
 #3: usb device history????
+
+
+#Make CSV
+Add-Member -InputObject $csvData -Name Date -Value $date.ToString()
+Add-Member -InputObject $csvData -Name TimeZone -Value $timezone
+Add-Member -InputObject $csvData -Name UpTime -Value $uptime
+Add-Member -InputObject $csvData -Name ComputerName -Value $computername
+Add-Member -InputObject $csvData -Name Opertaing System -Value $os
+Add-Member -InputObject $csvData -Name Cpu -Value $cpu
+Add-Member -InputObject $csvData -Name RAM -Value $ram
+Add-Member -InputObject $csvData -Name Discks -Value $disks
+Add-Member -InputObject $csvData -Name DomainControler -Value $DC
+Add-Member -InputObject $csvData -Name Users -Value $users
+Add-Member -InputObject $csvData -Name SystemAccounts -Value $sysAccounts
+Add-Member -InputObject $csvData -Name ServiceAccounts -Value $serAccounts
+Add-Member -InputObject $csvData -Name Services -Value $services
+Add-Member -InputObject $csvData -Name RunningPrograms -Value $programs1
+Add-Member -InputObject $csvData -Name Tasks -Value $tasks
+Add-Member -InputObject $csvData -Name ARPTable -Value $arpTable
+Add-Member -InputObject $csvData -Name MACAddress -Value $macaddress
+Add-Member -InputObject $csvData -Name RoutingTable -Value $routingTable
+Add-Member -InputObject $csvData -Name DNSCache -Value $dnsCache
+Add-Member -InputObject $csvData -Name NetworkShares -Value $netshares
+Add-Member -InputObject $csvData -Name Printers -Value $printer
+Add-Member -InputObject $csvData -Name WIFI -Value $wifi
+Add-Member -InputObject $csvData -Name InstalledPrograms -Value $programs
+Add-Member -InputObject $csvData -Name Proccesses -Value $proccesses
+Add-Member -InputObject $csvData -Name Drivers -Value $drivers
+Add-Member -InputObject $csvData -Name Downloads -Value $downloads
+Add-Member -InputObject $csvData -Name Documents -Value $documents
+Add-Member -InputObject $csvData -Name Partitions -Value $partitions
+Add-Member -InputObject $csvData -Name ConnectedUSB -Value $conectedusb
+
+
+$csvData | Export-Csv -Path (".\Desktop\ComputerInformation.csv")
